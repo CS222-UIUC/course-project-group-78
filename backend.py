@@ -32,9 +32,5 @@ def convert():
     :return: actual beatmap file
     '''
 
-def change():
-    '''
-    testing pull request
-    :return:
-    '''
+
 # figure out how to send file back to frontend
