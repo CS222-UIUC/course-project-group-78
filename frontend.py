@@ -4,8 +4,6 @@
 
 # need something that takes the beatmap file from backend
 
-#test
-
 print("test 2.0")
 
 def read_file():
