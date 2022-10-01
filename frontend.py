@@ -3,3 +3,5 @@
 # need something that takes in a mp3 file and send it to backend
 
 # need something that takes the beatmap file from backend
+
+print("This is a test push.")
