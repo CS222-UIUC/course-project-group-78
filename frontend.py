@@ -4,4 +4,4 @@
 
 # need something that takes the beatmap file from backend
 
-print("This is a test push.")
+print("test 2.0")
