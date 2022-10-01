@@ -6,3 +6,8 @@
 
 print("test 2.0")
 
+def read_file():
+    '''
+    testing
+    :return:
+    '''
