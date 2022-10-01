@@ -3,3 +3,9 @@
 # need something that takes in a mp3 file and send it to backend
 
 # need something that takes the beatmap file from backend
+
+def read_file():
+    '''
+    testing
+    :return:
+    '''
