@@ -23,3 +23,11 @@ func _on_quit_button_pressed():
 	get_tree().change_scene("res://scenes/main_scene/main_scene.tscn")
 
 '''
+
+# Kevin was here
+
+def read_file():
+    '''
+    testing
+    :return:
+    '''
