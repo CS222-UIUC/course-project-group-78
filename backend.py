@@ -1,5 +1,8 @@
 # import all libraries that we need
-
+from random import sample
+import librosa
+import numpy as np
+import scipy as sp
 
 # figure out how to take mp3 file from front end
 
@@ -14,17 +17,20 @@ def analyze_music():
 
 # helpers
 
-def breakdown():
+def breakdown(file):
     '''
     a function that takes in an mp3 file and break it down
     :return: an array of frequencies
     '''
+    data, sample_rate = librosa.load(file, sr=None)
+    return data, sample_rate # returns NumPy array
 
 def analyze():
     '''
     takes in an array of frequencies and analyze the music
     :return: our map in some kind of data type - tbd
     '''
+
 
 def convert():
     '''
