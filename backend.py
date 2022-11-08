@@ -1,5 +1,6 @@
 # import all libraries that we need
 from random import sample
+import math
 import librosa
 import numpy as np
 import scipy as sp
@@ -13,6 +14,31 @@ def analyze_music():
     call helpers and stuff
     :return: a file of our actual beatmap
     '''
+
+def freq_to_tile(freqs):
+    min = 10000000
+    tiles = []
+    curr_note = 0
+    len = 0;
+    for i in range(len(freqs)):
+        if(abs(freqs[i]-curr_note) <= 2**(1/12.0) and i < len(freqs)-1):
+            len += 1;
+        else:
+            if(len < min):
+                min = len
+            if(freqs[i] < curr_note):
+                if(tiles[len(tiles)-1][0] == 1):
+                    tiles.append((4,len))
+                else:
+                    tiles.append((tiles[len(tiles)-1][0]-1, len))
+            else:
+                if(tiles[len(tiles)-1][0] == 4):
+                    tiles.append((1,len))
+                else:
+                    tiles.append((tiles[len(tiles)-1][0]+1, len))
+            curr_note = freqs[i]
+            len = 1;
+    return tiles
 
 
 # helpers
