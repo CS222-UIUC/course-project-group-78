@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/gameplay_scene/quit_button.gd" type="Script" id=1]
+[ext_resource path="res://image_textures/bg_solid_color.png" type="Texture" id=2]
+[ext_resource path="res://image_textures/line.png" type="Texture" id=3]
+[ext_resource path="res://image_textures/x.png" type="Texture" id=4]
+[ext_resource path="res://scenes/arrow_button/arrow_button_scene.tscn" type="PackedScene" id=5]
+
+[node name="gameplay_scene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background_image" type="TextureRect" parent="."]
+light_mask = 0
+margin_left = -236.0
+margin_top = -120.0
+margin_right = 1684.0
+margin_bottom = 960.0
+texture = ExtResource( 2 )
+
+[node name="note_guildeline_one" type="TextureRect" parent="background_image"]
+light_mask = 0
+margin_left = 81.0
+margin_top = 80.0
+margin_right = 599.0
+margin_bottom = 744.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="note_guildeline_two" type="TextureRect" parent="background_image"]
+light_mask = 0
+margin_left = 177.0
+margin_top = 80.0
+margin_right = 695.0
+margin_bottom = 744.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="note_guildeline_three" type="TextureRect" parent="background_image"]
+light_mask = 0
+margin_left = 272.0
+margin_top = 81.0
+margin_right = 790.0
+margin_bottom = 745.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="note_guildeline_four" type="TextureRect" parent="background_image"]
+light_mask = 0
+margin_left = 366.0
+margin_top = 81.0
+margin_right = 884.0
+margin_bottom = 745.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="note_guildeline_five" type="TextureRect" parent="background_image"]
+light_mask = 0
+margin_left = 466.0
+margin_top = 83.0
+margin_right = 984.0
+margin_bottom = 747.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="quit_button" type="Button" parent="."]
+margin_left = 959.0
+margin_top = 3.0
+margin_right = 1022.0
+margin_bottom = 60.0
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+
+[node name="up_arrow" parent="." instance=ExtResource( 5 )]
+position = Vector2( 246, 548 )
+animation = "Up"
+
+[node name="down_arrow" parent="." instance=ExtResource( 5 )]
+position = Vector2( 342, 547 )
+animation = "Down"
+
+[node name="left_arrow" parent="." instance=ExtResource( 5 )]
+position = Vector2( 152, 548 )
+animation = "Left"
+
+[node name="right_arrow" parent="." instance=ExtResource( 5 )]
+position = Vector2( 439, 548 )
+
+[connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
