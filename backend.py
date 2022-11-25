@@ -62,18 +62,6 @@ def breakdown(file):
     data, sample_rate = librosa.load(file, sr=None)
     return data, sample_rate # returns NumPy array
 
-# def analyze():
-#     '''
-#     takes in an array of frequencies and analyze the music
-#     :return: our map in some kind of data type - tbd
-#     '''
-#
-#
-# def convert():
-#     '''
-#     takes in our map and convert it into an actual file
-#     :return: actual beatmap file
-#     '''
 
 
 # figure out how to send file back to frontend
