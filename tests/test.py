@@ -34,6 +34,7 @@ from pydub import AudioSegment
 
 def test_breakdown():
     # this array below is generated using
+    # is there a way to test this????
     breakdown_answer1 = np.array(
             [0.0000000e+00, 0.0000000e+00, 0.0000000e+00, 0.0000000e+00, -1.5258789e-05, 4.5776367e-05, -6.1035156e-05,
              6.1035156e-05, -3.0517578e-05, -1.5258789e-05])
@@ -42,7 +43,9 @@ def test_breakdown():
     e1wav = wave.open("example_1_test.wav")
     fr1_true = Wave_read.getframerate(e1wav)
     assert fr1_true == fr1
+    assert (len(breakdown_to_test1) > 0)
     assert np.allclose(breakdown_to_test1[:10], breakdown_answer1)
+
     print("example1 passed")
 
     breakdown_answer3 = np.array(
@@ -51,6 +54,7 @@ def test_breakdown():
     e3wav = wave.open("example_3_test.wav")
     fr3_true = Wave_read.getframerate(e3wav)
     assert fr3_true == fr3
+    assert (len(breakdown_to_test3) > 0)
     assert np.allclose(breakdown_to_test3[:10], breakdown_answer3)
     print("example3 passed")
 
