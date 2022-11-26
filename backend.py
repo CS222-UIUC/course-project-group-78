@@ -1,36 +1,46 @@
 # import all libraries that we need
-import warnings
-warnings.simplefilter(action='ignore', category=FutureWarning)
 import random
 import librosa
+import warnings
 import pandas as pd
+warnings.simplefilter(action='ignore')
+
 
 def breakdown(file):
-    '''
+    """
     a function that takes in a mp3 file and break it down
     :return: an array of frequencies
-    '''
+    """
     data, sample_rate = librosa.load(file)
     return data, sample_rate # returns NumPy array
 
+
 def make_tiles_no_hold(data, sr):
+    # using Librosa library's onset function to get onset time stamps
     onset_frames = librosa.onset.onset_detect(data, sr=sr, wait=1, pre_avg=1, post_avg=1, pre_max=1,
                                               post_max=1)
     onset_times = librosa.frames_to_time(onset_frames)
+    # processing the time stamps
+    # we do not want them if they are too close to each other
     onset_times_return = []
     for i in range(1, len(onset_times)):
         if onset_times[i] - onset_times[i - 1] > 0.15:
             onset_times_return.append(onset_times[i - 1])
-
-    l = ['l', 'r', 'u', 'd']
+    # four keys, generate a random list
+    key_list = ['l', 'r', 'u', 'd']
     tiles = []
     for i in range(len(onset_times_return)):
-        tiles.append(random.choice(l))
+        tiles.append(random.choice(key_list))
     return tiles, onset_times_return
+
+
 def make_tiles_hold(data, sr):
+    # using Librosa library's onset function to get onset time stamps
     onset_frames = librosa.onset.onset_detect(data, sr=sr, wait=1, pre_avg=1, post_avg=1, pre_max=1,
                                               post_max=1)
     onset_times = librosa.frames_to_time(onset_frames)
+    # processing the time stamps
+    # we want to merge them if they are too close to each other (hold notes)
     onset_times_return = []
     length = []
     note_length = 1
@@ -41,23 +51,37 @@ def make_tiles_hold(data, sr):
             note_length = 1
         else:
             note_length += 1
-
-    l = ['l', 'r', 'u', 'd']
+    # four keys, generate a random list
+    key_list = ['l', 'r', 'u', 'd']
     tiles = []
     for i in range(len(onset_times_return)):
-        tiles.append(random.choice(l))
+        tiles.append(random.choice(key_list))
     return tiles, onset_times_return, length
 
+
 def list_to_csv_no_hold(tiles, timestamp):
+    # using pandas to write everything into a csv file
     d = {'tiles': tiles, 'timestamp': timestamp}
     df = pd.DataFrame(data=d)
     df.to_csv('no_hold_output.csv')
 
+
 def list_to_csv_hold(tiles, timestamp, length):
+    # using pandas to write everything into a csv file
     d = {'tiles': tiles, 'timestamp': timestamp, 'note length': length}
     df = pd.DataFrame(data=d)
     df.to_csv('hold_output.csv')
 
+
+def mp3_to_csv(filename):
+    data, sample_rate = breakdown(filename)
+    hold_tiles, hold_timestamps, hold_length = make_tiles_hold(data, sample_rate)
+    no_hold_tiles, no_hold_timestamps = make_tiles_no_hold(data, sample_rate)
+    list_to_csv_hold(hold_tiles, hold_timestamps, hold_length)
+    list_to_csv_no_hold(no_hold_tiles, no_hold_timestamps)
+
+
+# not used, saved for records
 def original_make_tiles(data, sr):
     onset_frames = librosa.onset.onset_detect(data, sr=sr, wait=1, pre_avg=1, post_avg=1, pre_max=1,
                                               post_max=1)
@@ -69,6 +93,7 @@ def original_make_tiles(data, sr):
         tiles.append(random.choice(l))
     return tiles, onset_times
 
+# below are discarded functions
 # def beat_generation(data, sr):
 #     tempo, beat_times = librosa.beat.beat_track(data, sr=sr, start_bpm=60, units='time')
 #     timestamp = beat_times.tolist()

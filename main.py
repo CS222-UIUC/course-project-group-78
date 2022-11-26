@@ -1,23 +1,19 @@
 # Defining main function
-import wave
-
 from backend import *
-import numpy as np
-from wave import *
-from scipy.io import wavfile as wav
-# import librosa
 
 
+# main is mainly for testing purposes
 def main():
+    mp3_to_csv('example_3.mp3')
     # data, sample_frame_rate = librosa.load("example_1.mp3")
     #####
-    data, sample_frame_rate = breakdown("example_1.mp3")
-    tiles, timestamp = make_tiles_no_hold(data, sample_frame_rate)
-    t1, ts1, l1 = make_tiles_hold(data, sample_frame_rate)
-    # print(tiles)
-    # print(timestamp)
-    list_to_csv_no_hold(tiles, timestamp)
-    list_to_csv_hold(t1, ts1, l1)
+    # data, sample_frame_rate = breakdown("example_1.mp3")
+    # tiles, timestamp = make_tiles_no_hold(data, sample_frame_rate)
+    # t1, ts1, l1 = make_tiles_hold(data, sample_frame_rate)
+    # # print(tiles)
+    # # print(timestamp)
+    # list_to_csv_no_hold(tiles, timestamp)
+    # list_to_csv_hold(t1, ts1, l1)
 
     #####
     # onset_frames = librosa.onset.onset_detect(data, sr=sample_frame_rate, wait=1, pre_avg=1, post_avg=1, pre_max=1, post_max=1)
@@ -43,8 +39,8 @@ def main():
     # print(time_e)
     # print(len(time_e))
     # # this tells me the length of music, sample 3 is about 2min 11 sec
-    dur = librosa.get_duration(data, sample_frame_rate)
-    print(dur)
+    # dur = librosa.get_duration(data, sample_frame_rate)
+    # print(dur)
     # f = wave.open("example_1.wav")
     # # fr = Wave_read.getframerate(f)
     # # # farr = Wave_read.readframes(10)
