@@ -1,54 +1,51 @@
-<p align="right">
-<a href="https://discord.gg/KnJGY9S">
-  <img src="https://github.com/fenix-hub/ColoredBadges/blob/master/svg/social/discord.svg" alt="react" style="vertical-align:top; margin:6px 4px">
-</a>
-</p>
+# Beatmap Generator
 
-This plugin is now supported in [Godot Extended Library Discord](https://discord.gg/JNrcucg), check out the [Godot Extended Library Project](https://github.com/godot-extended-libraries)!
+#### CS222 Course Project Group 78
 
-<img src="addons/github-integration/github-logo.png" align="left" width="64" height="64">
+By: Akul Datta, Relena Li, Nisha Prasad, Kevin Wang
 
-# GitHub Integration
-A complete GitHub integration for your Godot Editor! Manage your project without even opening your browser.
+### Pitch
 
-Author: *"Nicolo (fenix) Santilio"*  
-Version: *1.4.3*  
-Godot Version: *3.2.4-rc3*  
-Wiki: *[supported](https://github.com/fenix-hub/godot-engine.github-integration/wiki)*  
+Rhythm games are a source of entertainment beloved by many, with fast-paced and engaging gameplay; however, many of them lack music that caters to each player’s individual tastes. A Beatmap Generator amplifies this experience by allowing players to automatically create levels to their own submitted music files.
 
-<img align="center" src="addons/github-integration/screenshots/banner.png">
+### MVP Functionality
 
-## What is this?
-*GitHub Integration* is a addon for Godot Engine that I've created mainly for a personal purpose.  
-Pushing and Pulling repositories while I'm working on Godot (especially if I'm under a GameJam) could take some time and force me to save the project, open the brwoser/git bash/git gui, and do all the stuff.  
-With this little addon which works directly in the editor, managing all your repositories will be very easy.  
+1. Users can submit music files
 
-## What can it do?
-*Github Integration* offers the main functionalities provided by GitHub (and git itself), in a more accessible way.  
-Currenlty, you can:
-- Manage all of your public and private **repositories**, *including* the ones you share with organizations and the ones in which you are a collaborator (with proper permissions): create, delete, push and clone repositories within your Godot project
-- Manage all of your public and private **gists**: delete, edit and create gists with a functional text editor
-- Manage collaboration invitations, inviting user to your repositories or accept/decline invitations you have received
+2. Users can generate beatmaps from music files
 
-## How does it work?
-I'm currently working on a [Wiki](https://github.com/fenix-hub/godot-engine.github-integration/wiki) for this plugin. It is a process that will take some time to complete since I want to provide a well-organized wiki with some basic explanations about GitHub itself. Anyway, I'm working on a user-friendly plugin, so everything should be the very ease to use for GitHub experienced users, and a little intuitive for people who never used GitHub or are not so experienced.
-If you want to see some screenshots you can find them here `addons/github-integration/screenshots`
+3. Users can play beatmaps
 
-## Supporters page
-<table>
-  <tr>
-    <th><img src='https://avatars0.githubusercontent.com/u/9788627?s=64&v=4' alt='@masterworm2' width="64"/><br/><a href="https://github.com/masterworm2">masterworm2</a></th>
-    <th><img src='https://avatars0.githubusercontent.com/u/48778172?s=64&v=4' alt='@auctru' width="64"/><br/><a href="https://github.com/autcru">autcru</a></th> 
-  </tr>
-</table>
+4. Users can save beatmaps
 
-## :warning: Disclaimer  
-As a "work in progress" project, there is *no warranty* for any eventual issue and bug that may broke your project.  
-I don't assume any responsibility for possible corruptions of your project. It is always advisable to keep a copy of your project and check any changes you make in your Github repository.  
+5. Users can export beatmap files
 
------------------
-> This text file was created via [TextEditor Integration](https://github.com/fenix-hub/godot-engine.text-editor) inside Godot Engine's Editor.
+6. Users can view saved beatmaps
 
+### Components
 
+We decided to split our project into frontend and backend segments to increase the organization and modifiability of our code. 
 
+#### Backend: 
+We will write the backend using Python with music analysis libraries such as Librosa.
+
+The backend has to do the following tasks:
+
+1. Analyze Music
+
+2. Generate Beatmaps 
+   1. We will use Librosa, a Python music analysis library
+   
+3. Save and export beatmap files
+
+#### Frontend: 
+We will write the front end of our software with the Godot game engine using C++. We will create a simple GUI and login page with the front end. We will write tests for Godot using catch2.
+
+The frontend has to do the following tasks:
+1. Play Music
+2. Allow users to play the game, determine scores with synchronization
+
+### How to use:
+
+to be implemented...
 
