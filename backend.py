@@ -36,7 +36,7 @@ def make_tiles_hold(data, sr):
     note_length = 1
     for i in range(1, len(onset_times)):
         if onset_times[i] - onset_times[i - 1] > 0.15:
-            onset_times_return.append(onset_times[i - 1])
+            onset_times_return.append(onset_times[i - note_length])
             length.append(note_length)
             note_length = 1
         else:
