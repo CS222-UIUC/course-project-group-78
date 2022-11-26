@@ -27,22 +27,28 @@ import scipy as sp
 #     return dst
 
 def freq_to_tile(freqs):
-    min = 10000000
     tiles = []
     curr_note = 0
     len = 0;
+    curr_note = freqs[0]
     for i in range(len(freqs)):
-        if(abs(freqs[i]-curr_note) <= 2**(1/12.0) and i < len(freqs)-1 and i > 0):
+        if(abs(freqs[i]-curr_note) <= 2**(1/12.0) and i < len(freqs)-1):
             len += 1;
+            #if the note is the same, just increment length
         else:
-            if(len < min):
-                min = len
-            if(freqs[i] < curr_note):
+            if(abs(curr_note) < 0.15):
+                titles.append([0, len])
+                #if < 0.15, it's a rest
+                #for rest the tile value is 0
+            else if(freqs[i] < curr_note):
+                #move the new tile one to the left
+                #if it's the leftmost(1) tile, move to 4.
                 if(tiles[len(tiles)-1][0] == 1):
                     tiles.append([4,len])
                 else:
                     tiles.append((tiles[len(tiles)-1][0]-1, len))
             else:
+                #similar here but if it's the most right, move to 1
                 if(tiles[len(tiles)-1][0] == 4):
                     tiles.append([1,len])
                 else:
