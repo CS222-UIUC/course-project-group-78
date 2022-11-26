@@ -1,30 +1,36 @@
 # import all libraries that we need
+import random
 from random import sample
 import math
 import librosa
+import pandas as pd
 import numpy as np
 import scipy as sp
 
-# figure out how to take mp3 file from front end
+def breakdown(file):
+    '''
+    a function that takes in a mp3 file and break it down
+    :return: an array of frequencies
+    '''
+    data, sample_rate = librosa.load(file, sr=None)
+    return data, sample_rate # returns NumPy array
 
-# function that takes in 1 parameter (music mp3 file)
-# def analyze_music():
-#
-#     '''
-#     call helpers and stuff
-#     :return: a file of our actual beatmap
-#     '''
-#
-# from os import path
-# from pydub import AudioSegment
+def make_tiles_no_hold(data, sr):
+    tempo, beat_times = librosa.beat.beat_track(data, sr=sr, start_bpm=60, units='time')
+    timestamp = beat_times.tolist()
+    l = ['l', 'r', 'u', 'd']
+    tiles = []
+    for i in range(len(timestamp)):
+        tiles.append(random.choice(l))
+    return tiles, timestamp
 
-# def convert_to_wav(src):
-#     # files
-#     dst = "mp3ToWav.wav"
-#     # convert wav to mp3
-#     sound = AudioSegment.from_mp3(src)
-#     sound.export(dst, format="wav")
-#     return dst
+def make_tiles_hold(y):
+    return 0
+
+def list_to_csv(tiles, timestamp):
+    d = {'tiles': tiles, 'timestamp': timestamp}
+    df = pd.DataFrame(data=d)
+    df.to_csv('output.csv')
 
 def freq_to_tile(freqs):
     min = 10000000
@@ -51,16 +57,31 @@ def freq_to_tile(freqs):
             len = 1;
     return tiles
 
+# figure out how to take mp3 file from front end
+
+# function that takes in 1 parameter (music mp3 file)
+# def analyze_music():
+#
+#     '''
+#     call helpers and stuff
+#     :return: a file of our actual beatmap
+#     '''
+#
+# from os import path
+# from pydub import AudioSegment
+
+# def convert_to_wav(src):
+#     # files
+#     dst = "mp3ToWav.wav"
+#     # convert wav to mp3
+#     sound = AudioSegment.from_mp3(src)
+#     sound.export(dst, format="wav")
+#     return dst
+
 
 # helpers
 
-def breakdown(file):
-    '''
-    a function that takes in a mp3 file and break it down
-    :return: an array of frequencies
-    '''
-    data, sample_rate = librosa.load(file, sr=None)
-    return data, sample_rate # returns NumPy array
+
 
 
 
