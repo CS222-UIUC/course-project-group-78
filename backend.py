@@ -1,36 +1,74 @@
 # import all libraries that we need
 import random
-from random import sample
-import math
 import librosa
 import pandas as pd
-import numpy as np
-import scipy as sp
 
 def breakdown(file):
     '''
     a function that takes in a mp3 file and break it down
     :return: an array of frequencies
     '''
-    data, sample_rate = librosa.load(file, sr=None)
+    data, sample_rate = librosa.load(file)
     return data, sample_rate # returns NumPy array
 
 def make_tiles_no_hold(data, sr):
-    tempo, beat_times = librosa.beat.beat_track(data, sr=sr, start_bpm=60, units='time')
-    timestamp = beat_times.tolist()
+    onset_frames = librosa.onset.onset_detect(data, sr=sr, wait=1, pre_avg=1, post_avg=1, pre_max=1,
+                                              post_max=1)
+    onset_times = librosa.frames_to_time(onset_frames)
+    onset_times_return = []
+    for i in range(1, len(onset_times)):
+        if onset_times[i] - onset_times[i - 1] > 0.15:
+            onset_times_return.append(onset_times[i])
+
     l = ['l', 'r', 'u', 'd']
     tiles = []
-    for i in range(len(timestamp)):
+    for i in range(len(onset_times_return)):
         tiles.append(random.choice(l))
-    return tiles, timestamp
+    return tiles, onset_times_return
+def make_tiles_hold(data, sr):
+    onset_frames = librosa.onset.onset_detect(data, sr=sr, wait=1, pre_avg=1, post_avg=1, pre_max=1,
+                                              post_max=1)
+    onset_times = librosa.frames_to_time(onset_frames)
+    onset_times_return = []
+    length = []
+    note_length = 1
+    for i in range(1, len(onset_times)):
+        if onset_times[i] - onset_times[i - 1] > 0.15:
+            onset_times_return.append(onset_times[i])
+            length.append(note_length)
+            note_length = 1
+        else:
+            note_length += 1
 
-def make_tiles_hold(y):
-    return 0
+    l = ['l', 'r', 'u', 'd']
+    tiles = []
+    for i in range(len(onset_times_return)):
+        tiles.append(random.choice(l))
+    return tiles, onset_times_return, length
 
-def list_to_csv(tiles, timestamp):
+def list_to_csv_no_hold(tiles, timestamp):
     d = {'tiles': tiles, 'timestamp': timestamp}
     df = pd.DataFrame(data=d)
-    df.to_csv('output.csv')
+    df.to_csv('no_hold_output.csv')
+
+def list_to_csv_hold(tiles, timestamp, length):
+    d = {'tiles': tiles, 'timestamp': timestamp, 'note length': length}
+    df = pd.DataFrame(data=d)
+    df.to_csv('hold_output.csv')
+
+def beat_generation(data, sr):
+    tempo, beat_times = librosa.beat.beat_track(data, sr=sr, start_bpm=60, units='time')
+    timestamp = beat_times.tolist()
+    timestamp_return = [timestamp[0]]
+    for i in range(1, len(timestamp)):
+        if timestamp[i] - timestamp_return[i - 1] > 0.33:
+            timestamp_return.append(timestamp[i])
+
+    l = ['l', 'r', 'u', 'd']
+    tiles = []
+    for i in range(len(timestamp_return)):
+        tiles.append(random.choice(l))
+    return tiles, timestamp_return
 
 # def freq_to_tile(freqs):
 #     tiles = []
