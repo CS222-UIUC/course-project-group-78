@@ -84,11 +84,6 @@ def list_to_csv(tiles, timestamp):
 #     sound.export(dst, format="wav")
 #     return dst
 
-
 # helpers
-
-
-
-
 
 # figure out how to send file back to frontend
