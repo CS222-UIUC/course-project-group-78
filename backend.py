@@ -32,30 +32,36 @@ def list_to_csv(tiles, timestamp):
     df = pd.DataFrame(data=d)
     df.to_csv('output.csv')
 
-def freq_to_tile(freqs):
-    min = 10000000
-    tiles = []
-    curr_note = 0
-    len = 0;
-    for i in range(len(freqs)):
-        if(abs(freqs[i]-curr_note) <= 2**(1/12.0) and i < len(freqs)-1 and i > 0):
-            len += 1;
-        else:
-            if(len < min):
-                min = len
-            if(freqs[i] < curr_note):
-                if(tiles[len(tiles)-1][0] == 1):
-                    tiles.append([4,len])
-                else:
-                    tiles.append((tiles[len(tiles)-1][0]-1, len))
-            else:
-                if(tiles[len(tiles)-1][0] == 4):
-                    tiles.append([1,len])
-                else:
-                    tiles.append((tiles[len(tiles)-1][0]+1, len))
-            curr_note = freqs[i]
-            len = 1;
-    return tiles
+# def freq_to_tile(freqs):
+#     tiles = []
+#     curr_note = 0
+#     len = 0;
+#     curr_note = freqs[0]
+#     for i in range(len(freqs)):
+#         if(abs(freqs[i]-curr_note) <= 2**(1/12.0) and i < len(freqs)-1):
+#             len += 1;
+#             #if the note is the same, just increment length
+#         else:
+#             if(abs(curr_note) < 0.15):
+#                 tiles.append([0, len])
+#                 #if < 0.15, it's a rest
+#                 #for rest the tile value is 0
+#             else if(freqs[i] < curr_note):
+#                 #move the new tile one to the left
+#                 #if it's the leftmost(1) tile, move to 4.
+#                 if(tiles[len(tiles)-1][0] == 1):
+#                     tiles.append([4,len])
+#                 else:
+#                     tiles.append((tiles[len(tiles)-1][0]-1, len))
+#             else:
+#                 #similar here but if it's the most right, move to 1
+#                 if(tiles[len(tiles)-1][0] == 4):
+#                     tiles.append([1,len])
+#                 else:
+#                     tiles.append((tiles[len(tiles)-1][0]+1, len))
+#             curr_note = freqs[i]
+#             len = 1;
+#     return tiles
 
 # figure out how to take mp3 file from front end
 
@@ -80,9 +86,5 @@ def freq_to_tile(freqs):
 
 
 # helpers
-
-
-
-
 
 # figure out how to send file back to frontend
