@@ -29,6 +29,7 @@ import scipy as sp
 def freq_to_tile(freqs):
     min = 10000000
     tiles = []
+    tiles.append([])
     curr_note = 0
     len = 0;
     for i in range(len(freqs)):
