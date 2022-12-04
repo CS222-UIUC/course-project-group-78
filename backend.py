@@ -1,5 +1,7 @@
 # import all libraries that we need
 import random
+import sys
+
 import librosa
 import warnings
 import pandas as pd
@@ -92,6 +94,16 @@ def original_make_tiles(data, sr):
     for i in range(len(onset_times)):
         tiles.append(random.choice(l))
     return tiles, onset_times
+
+
+def main():
+    args = sys.argv[1]
+    mp3_to_csv(args)
+    print('done')
+
+
+if __name__ == "__main__":
+    main()
 
 # below are discarded functions
 # def beat_generation(data, sr):
