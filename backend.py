@@ -82,6 +82,11 @@ def mp3_to_csv(filename):
     list_to_csv_hold(hold_tiles, hold_timestamps, hold_length)
     list_to_csv_no_hold(no_hold_tiles, no_hold_timestamps)
 
+def mp3_to_arr_no_hold(filename):
+    data, sample_rate = breakdown(filename)
+    no_hold_tiles, no_hold_timestamps = make_tiles_no_hold(data, sample_rate)
+    return no_hold_tiles, no_hold_timestamps
+
 
 # not used, saved for records
 def original_make_tiles(data, sr):
@@ -98,8 +103,12 @@ def original_make_tiles(data, sr):
 
 def main():
     args = sys.argv[1]
-    mp3_to_csv(args)
-    print('done')
+    # mp3_to_csv(args)
+    print('processing')
+    to_return = mp3_to_arr_no_hold(args)
+    print(to_return)
+    return to_return
+
 
 
 if __name__ == "__main__":
