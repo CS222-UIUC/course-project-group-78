@@ -104,12 +104,10 @@ def original_make_tiles(data, sr):
 def main():
     args = sys.argv[1]
     # mp3_to_csv(args)
-    print('processing')
+    # print('processing')
     to_return = mp3_to_arr_no_hold(args)
-    print(to_return)
+    # print(to_return)
     return to_return
-
-
 
 if __name__ == "__main__":
     main()
