@@ -65,7 +65,7 @@ def list_to_csv_no_hold(tiles, timestamp):
     # using pandas to write everything into a csv file
     d = {'tiles': tiles, 'timestamp': timestamp}
     df = pd.DataFrame(data=d)
-    df.to_csv('no_hold_output.csv')
+    df.to_csv('my_beatmap.csv')
 
 
 def list_to_csv_hold(tiles, timestamp, length):
@@ -82,12 +82,16 @@ def mp3_to_csv(filename):
     list_to_csv_hold(hold_tiles, hold_timestamps, hold_length)
     list_to_csv_no_hold(no_hold_tiles, no_hold_timestamps)
 
+
 def mp3_to_arr_no_hold(filename):
     data, sample_rate = breakdown(filename)
     no_hold_tiles, no_hold_timestamps = make_tiles_no_hold(data, sample_rate)
     return no_hold_tiles, no_hold_timestamps
 
-
+def mp3_to_beatmap(filename):
+    data, sample_rate = breakdown(filename)
+    no_hold_tiles, no_hold_timestamps = make_tiles_no_hold(data, sample_rate)
+    list_to_csv_no_hold(no_hold_tiles, no_hold_timestamps)
 # not used, saved for records
 def original_make_tiles(data, sr):
     onset_frames = librosa.onset.onset_detect(data, sr=sr, wait=1, pre_avg=1, post_avg=1, pre_max=1,
@@ -105,9 +109,12 @@ def main():
     args = sys.argv[1]
     # mp3_to_csv(args)
     # print('processing')
-    to_return = mp3_to_arr_no_hold(args)
-    # print(to_return)
-    return to_return
+    # to_return = mp3_to_arr_no_hold(args)
+    # # print(to_return)
+    # return to_return
+    mp3_to_beatmap(args)
+    print("conversion done")
+
 
 if __name__ == "__main__":
     main()
