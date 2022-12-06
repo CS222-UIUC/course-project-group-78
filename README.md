@@ -16,12 +16,6 @@ Rhythm games are a source of entertainment beloved by many, with fast-paced and 
 
 3. Users can play beatmaps
 
-4. Users can save beatmaps
-
-5. Users can export beatmap files
-
-6. Users can view saved beatmaps
-
 ### Components
 
 We decided to split our project into frontend and backend segments to increase the organization and modifiability of our code. 
@@ -42,10 +36,17 @@ The backend has to do the following tasks:
 We will write the front end of our software with the Godot game engine using C++. We will create a simple GUI and login page with the front end. We will write tests for Godot using catch2.
 
 The frontend has to do the following tasks:
-1. Play Music
-2. Allow users to play the game, determine scores with synchronization
+1. Accept music files
+
+2. Play music
+
+3. Retrieve beatmap files
+
+4. Allow users to play the game
+
+5. Determine scores with synchronization
 
 ### How to use:
 
-to be implemented...
+Due to issues with exportation, at the moment it is necessary to download the Godot engine and the project, then import the project.godot file into the engine. After that, if you click on the play button in the top right corner, the application will launch and you can run it.
 
