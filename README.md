@@ -21,6 +21,13 @@ Rhythm games are a source of entertainment beloved by many, with fast-paced and 
 We decided to split our project into frontend and backend segments to increase the organization and modifiability of our code. 
 
 #### Backend: 
+
+Akul - Music conversion
+
+Kevin - Algorithms
+
+Relena - testing
+
 We will write the backend using Python with music analysis libraries such as Librosa.
 
 The backend has to do the following tasks:
@@ -32,7 +39,8 @@ The backend has to do the following tasks:
    
 3. Save and export beatmap files
 
-#### Frontend: 
+#### Frontend: (Nisha)
+
 We will write the front end of our software with the Godot game engine using C++. We will create a simple GUI and login page with the front end. We will write tests for Godot using catch2.
 
 The frontend has to do the following tasks:
