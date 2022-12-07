@@ -58,3 +58,4 @@ The frontend has to do the following tasks:
 
 Due to issues with exportation, at the moment it is necessary to download the Godot engine and the project, then import the project.godot file into the engine. After that, if you click on the play button in the top right corner, the application will launch and you can run it.
 
+Currently supported for Windows (64-bit)
