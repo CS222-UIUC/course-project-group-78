@@ -41,7 +41,7 @@ The backend has to do the following tasks:
 
 #### Frontend: (Nisha)
 
-We will write the front end of our software with the Godot game engine using C++. We will create a simple GUI and login page with the front end. We will write tests for Godot using catch2.
+We will write the front end of our software with the Godot game engine using GDScript. We will create a simple GUI and login page with the front end. We will write tests for Godot using catch2.
 
 The frontend has to do the following tasks:
 1. Accept music files
