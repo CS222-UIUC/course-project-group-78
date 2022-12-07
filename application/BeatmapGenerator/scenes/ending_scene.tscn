@@ -1,0 +1,175 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/ending_scene.gd" type="Script" id=1]
+[ext_resource path="res://fonts/HULifeStyle_m.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://image_textures/bg_solid_color.png" type="Texture" id=3]
+[ext_resource path="res://image_textures/ivory.png" type="Texture" id=4]
+[ext_resource path="res://image_textures/x.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 44
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 42
+font_data = ExtResource( 2 )
+
+[node name="ending_scene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background_image" type="TextureRect" parent="."]
+light_mask = 0
+margin_left = -236.0
+margin_top = -120.0
+margin_right = 1684.0
+margin_bottom = 960.0
+texture = ExtResource( 3 )
+
+[node name="quit_button" type="Button" parent="."]
+margin_left = 959.0
+margin_top = 3.0
+margin_right = 1022.0
+margin_bottom = 60.0
+icon = ExtResource( 5 )
+flat = true
+expand_icon = true
+
+[node name="replay_button" type="Button" parent="."]
+margin_left = 461.0
+margin_top = 429.0
+margin_right = 725.0
+margin_bottom = 580.0
+custom_fonts/font = SubResource( 1 )
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="replay_button"]
+margin_left = 53.0
+margin_top = 56.0
+margin_right = 208.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 2 )
+text = "Replay"
+align = 1
+valign = 1
+
+[node name="new_song_button" type="Button" parent="."]
+margin_left = 739.0
+margin_top = 429.0
+margin_right = 1003.0
+margin_bottom = 580.0
+custom_fonts/font = SubResource( 1 )
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="new_song_button"]
+margin_left = 18.0
+margin_top = 54.0
+margin_right = 246.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 2 )
+text = "New Song"
+align = 1
+valign = 1
+
+[node name="grade" type="Label" parent="."]
+margin_left = 79.0
+margin_top = 73.0
+margin_right = 234.0
+margin_bottom = 117.0
+custom_fonts/font = SubResource( 3 )
+text = "Grade: "
+
+[node name="gradebox" type="Label" parent="grade"]
+margin_left = 210.0
+margin_top = 4.0
+margin_right = 473.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="score" type="Label" parent="."]
+margin_left = 80.0
+margin_top = 128.0
+margin_right = 123.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 3 )
+text = "Score: "
+
+[node name="scorebox" type="Label" parent="score"]
+margin_left = 210.0
+margin_top = 4.0
+margin_right = 475.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="perfect" type="Label" parent="."]
+margin_left = 80.0
+margin_top = 185.0
+margin_right = 133.0
+margin_bottom = 199.0
+custom_fonts/font = SubResource( 3 )
+text = "Perfect: "
+
+[node name="perfects" type="Label" parent="perfect"]
+margin_left = 210.0
+margin_right = 457.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="great" type="Label" parent="."]
+margin_left = 78.0
+margin_top = 243.0
+margin_right = 215.0
+margin_bottom = 287.0
+custom_fonts/font = SubResource( 3 )
+text = "Great: "
+
+[node name="greats" type="Label" parent="great"]
+margin_left = 213.0
+margin_right = 476.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="good" type="Label" parent="."]
+margin_left = 78.0
+margin_top = 300.0
+margin_right = 163.0
+margin_bottom = 344.0
+rect_pivot_offset = Vector2( -347, 243 )
+custom_fonts/font = SubResource( 3 )
+text = "Good: "
+
+[node name="goods" type="Label" parent="good"]
+margin_left = 212.0
+margin_top = -2.0
+margin_right = 493.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 3 )
+
+[node name="missed" type="Label" parent="."]
+margin_left = 78.0
+margin_top = 357.0
+margin_right = 230.0
+margin_bottom = 401.0
+rect_pivot_offset = Vector2( -347, 243 )
+custom_fonts/font = SubResource( 3 )
+text = "Missed"
+
+[node name="misses" type="Label" parent="missed"]
+margin_left = 212.0
+margin_top = -2.0
+margin_right = 493.0
+margin_bottom = 42.0
+custom_fonts/font = SubResource( 3 )
+
+[connection signal="pressed" from="quit_button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="replay_button" to="." method="_on_replay_button_pressed"]
+[connection signal="pressed" from="new_song_button" to="." method="_on_new_song_button_pressed"]
